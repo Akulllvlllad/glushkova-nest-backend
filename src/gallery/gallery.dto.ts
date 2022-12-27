@@ -1,21 +1,24 @@
-import { IsString, IsArray } from 'class-validator';
+import { IsString, IsArray } from 'class-validator'
 
-export class GalleryDto {
-  @IsString()
-  title: string;
+export class galleryDto {
+	@IsString()
+	gallery: string
 
-  @IsString()
-  beautifulTitle: string;
+	@IsString()
+	beautifulTitle: string
 
-  @IsString()
-  titleImage: string;
+	@IsString()
+	titleImage: string
 
-  @IsString()
-  bannerImage: string;
+	@IsString()
+	date: string
 
-  @IsArray()
-  data: [];
+	@IsString()
+	bannerImage: string
 
-  @IsString()
-  date: string;
+	@IsArray()
+	data: []
+
+	@IsString()
+	location: string
 }

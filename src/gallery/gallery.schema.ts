@@ -1,27 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document } from 'mongoose'
+import { HydratedDocument } from 'mongoose'
 
-export type GalleryDocument = Gallery & Document
+export type galleryDocument = HydratedDocument<gallery>
 
 @Schema()
-export class Gallery {
-	@Prop({ default: '' })
-	title: string
+export class gallery {
+	@Prop()
+	gallery: string
 
-	@Prop({ default: '' })
+	@Prop()
 	beautifulTitle: string
 
-	@Prop({ default: '' })
+	@Prop()
 	titleImage: string
 
-	@Prop({ default: '' })
+	@Prop()
+	date: string
+
+	@Prop()
 	bannerImage: string
 
-	@Prop({ default: [{ id: String, path: String }] })
+	@Prop([String])
 	data: []
 
-	@Prop({ default: '' })
-	date: string
+	@Prop()
+	location: string
 }
 
-export const GallerySchema = SchemaFactory.createForClass(Gallery)
+export const gallerySchema = SchemaFactory.createForClass(gallery)

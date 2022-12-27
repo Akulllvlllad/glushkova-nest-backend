@@ -1,19 +1,50 @@
-import { Controller, Post, Get } from '@nestjs/common';
-import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
-import { GalleryDto } from './gallery.dto';
-// import { GalleryService } from './gallery.service';
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	Param,
+	Patch,
+	Post,
+} from '@nestjs/common'
+import { Types } from 'mongoose'
+import { galleryDto } from './gallery.dto'
+import { GalleryService } from './gallery.service'
 
 @Controller('gallery')
 export class GalleryController {
-  // constructor(private readonly galleryService: GalleryService) {}
+	constructor(private readonly galleryService: GalleryService) {}
 
-  @Get()
-  async getAllGallery() {
-    return 'hello';
-  }
+	@Get('all-page')
+	async getGalleriesPage() {
+		return await this.galleryService.getGalleriesPage()
+	}
 
-  @Post('create')
-  async createGallery(@Body() dto: GalleryDto) {
-    return [dto];
-  }
+	@Get()
+	async getGalleries() {
+		return this.galleryService.findAll()
+	}
+
+	@Post()
+	async createGallery() {
+		return this.galleryService.createGallery()
+	}
+
+	@Delete(':id')
+	async deleteGallery(@Param('id') id: Types.ObjectId) {
+		return this.galleryService.deleteOne(id)
+	}
+
+	@Patch(':id')
+	async updateGallery(
+		@Param('id') id: Types.ObjectId,
+		@Body() dto: galleryDto
+	) {
+		return await this.galleryService.updateGallery(id, dto)
+	}
+
+	@Get(':id')
+	async getGallery(@Param('id') id: Types.ObjectId) {
+		return await this.galleryService.getCurrentGallery(id)
+	}
 }

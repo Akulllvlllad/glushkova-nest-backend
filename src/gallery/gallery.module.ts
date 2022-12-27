@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Gallery, GallerySchema } from './gallery.schema';
-import { GalleryRepository } from './gallery.repository'
+import { GalleryController } from './gallery.controller';
+import { gallery, gallerySchema } from './gallery.schema';
+import { GalleryService } from './gallery.service';
 
 @Module({
 	imports: [
-		MongooseModule.forFeature([{ name: "Gallery", schema: GallerySchema }]),
+		MongooseModule.forFeature([{ name: gallery.name, schema: gallerySchema }]),
 	],
-	providers: [GalleryRepository],
+	controllers: [GalleryController],
+	providers: [GalleryService],
 })
 export class GalleryModule {}
