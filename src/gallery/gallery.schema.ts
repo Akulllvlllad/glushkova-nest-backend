@@ -5,26 +5,29 @@ export type galleryDocument = HydratedDocument<gallery>
 
 @Schema()
 export class gallery {
-	@Prop()
-	gallery: string
+  @Prop()
+  gallery: string;
 
-	@Prop()
-	beautifulTitle: string
+  @Prop()
+  beautifulTitle: string;
 
-	@Prop()
-	titleImage: string
+  @Prop()
+  titleImage: string;
 
-	@Prop()
-	date: string
+  @Prop()
+  date: string;
 
-	@Prop()
-	bannerImage: string
+  @Prop()
+  bannerImage: string;
 
-	@Prop([String])
-	data: []
+  @Prop([String])
+  data: [];
 
-	@Prop()
-	location: string
+  @Prop()
+  location: string;
+
+  @Prop()
+  isPublic: boolean;
 }
 
 export const gallerySchema = SchemaFactory.createForClass(gallery)
